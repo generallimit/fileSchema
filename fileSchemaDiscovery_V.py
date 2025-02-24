@@ -26,7 +26,7 @@ for filename in os.listdir(input_dir):
         
         try:
             # Read pipe-delimited file
-            df = pd.read_csv(file_path, delimiter="|")
+            df = pd.read_csv(file_path, delimiter="|", nrows=0, encoding="latin-1")
             
             # Get schema
             schema = get_schema(df)
