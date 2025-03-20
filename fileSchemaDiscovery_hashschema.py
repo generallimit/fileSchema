@@ -48,7 +48,7 @@ for filename in os.listdir(input_dir):
             # Move file to corresponding folder
             schema_folder = os.path.join(output_dir, schema_hash)
             os.makedirs(schema_folder, exist_ok=True)
-            shutil.move(file_path, os.path.join(schema_folder, filename))
+            shutil.copy2(file_path, os.path.join(schema_folder, filename))
         
         except Exception as e:
             print(f"Error processing {filename}: {e}")
