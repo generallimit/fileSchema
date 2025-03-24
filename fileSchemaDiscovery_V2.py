@@ -71,10 +71,15 @@ for filename in os.listdir(input_dir):
                     json.dump(schema, f, indent=4)
                 next_version_number +=1
             
-            # Move file to corresponding folder
+            # Move file to corresponding folder if it doesn't exist
             schema_folder = os.path.join(output_dir, schema_version)
             os.makedirs(schema_folder, exist_ok=True)
-            shutil.copy2(file_path, os.path.join(schema_folder, filename))
+            destination_file_path = os.path.join(schema_folder, filename)
+            if not os.path.exists(destination_file_path):
+                shutil.copy2(file_path, destination_file_path)
+            else:
+                print(f"File '{filename}' already exists in '{schema_folder}'. Skipping.")
+
         
         except Exception as e:
             print(f"Error processing {filename}: {e}")
